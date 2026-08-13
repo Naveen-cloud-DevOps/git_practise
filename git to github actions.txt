@@ -1,0 +1,422 @@
+﻿GIT: GLOBAL INFORMATION TRACKER
+VCS: VERSION CONTROL SYSTEM
+SCM: SOURCE CODE MANAGEMENT
+
+
+
+
+VCS: TO STORE EACH VERSION OF CODE SEPERATELY.
+
+
+V1 : 1 SERVICES : 100 LINES -- > REPO-1
+V2 : 2 SERVICES : 200 LINES -- > REPO-2
+V3 : 3 SERVICES : 300 LINES -- > REPO-3
+
+
+WHY WE NEED TO STORE THEM SEPERATELY >
+TO DO ROLLBACK: GOING BACK TO PREVIOUS VERSION OF APPLICATION
+V3  -- > V2 
+
+
+V1 : INDEX.HTML : 10
+V2 : INDEX.HTML : 20
+V3 : INDEX.HTML : 30
+
+
+
+
+
+
+WHAT IS GIT?
+
+
+Git is used to track the files.
+It will maintain multiple versions of the same file.
+It is platform-independent.
+It is free and open-source.
+They can handle larger projects efficiently.
+It is 3rd generation of vcs.
+it is written on c programming
+it came on the year 2005
+
+
+CVCS: CENTRALIZED VERSION CONTROL SYSTEM
+STORES CODE ON SINGLE REPO
+Ex: SVN
+
+
+DVCS: DISTRIBUTED VERSION CONTROL SYSTEM
+STORES CODE ON MULTIPLE REPO
+Ex: GIT
+
+
+
+
+
+
+STAGES/ARCHITECTURE OF GIT:
+
+
+IN GIT WE HAVE TOTAL 3 STAGES:
+
+
+1. WORKING DIRECTORY        : WHERE WE WRITE THE CODE
+2. STAGING AREA                : WHERE WE TRACK THE CODE
+3. REPOSITORY                : WHERE WE STORE THE TRACKED THE CODE
+
+
+PRACTICAL PART:
+
+
+GIT DOWNLOADING LINK: (COPY PASTE BELOW LINK IN BROWSER TO DOWNLOAD GIT)
+https://github.com/git-for-windows/git/releases/download/v2.53.0.windows.1/Git-2.53.0-64-bit.exe
+
+
+
+
+OPEN GITBASH IN DOWNLOAD FROM CHROME
+NEXT --> NEXT -- > UNTILL IT INSTALL
+OPEN GITBASH ON YOUR WINDOWS
+
+
+mkdir paytm
+cd paytm
+
+
+ISSUE: fatal: not a git repository (or any of the parent directories): .git
+SOL: run git init command
+
+
+git init : used to Initialize the empty repository
+with out .git commands will not work.
+
+
+
+
+touch index.html        : to create a file
+git status                : to show the file status 
+git add index.html        : to track the file
+
+
+NOTE: WITHOUT CONFIGURNING USER NAME AND EMAIL COMMITS WILL NOT HAPPEN.
+
+
+git config --global user.name "raham"
+git config --global user.email "raham@gmail.com"
+
+
+
+
+git commit -m "commit-1" index.html        : to commit a file
+git log                        : to show commits history
+git log --oneline        : commits on single line
+git log --oneline -2        : to show last 2 commits
+
+
+
+
+create -- > track -- > commit (CTC)
+touch  -- > git add -- > git commit
+
+
+
+
+Note: here every dev works on the local laptop
+at the end we want all dev codes to create an application.
+so here we use GitHub to combine all dev codes together.
+
+
+Create a GitHub account and create Repo 
+
+
+create a new repo
+give a name
+create
+
+
+[NOTE: PLEASE I KINDLY REQUEST TO COPY AND PASTE YOUR ACCOUNT LINK :( ]
+
+
+git remote add origin https://github.com/devopsbyraham/paytm.git
+git push origin master
+IT WILL ASK AUTHENTICATON IN OTHER TAB PLS GIVE THE DETAILS
+Authentication Succeeded
+
+
+
+
+git show: to show the file that committed for specific commit id.
+git show commit_id
+
+
+=================================================================================
+
+
+BRANCHES:
+To Push the code from git to GitHub we need to have a branch.
+It's an individual line of development for code.
+we create different branches in real-time.
+each developer will work on their own branch.
+At the end we will combine all branches together on GitHub.
+Default branch is Master. {git=master, github=main}
+Common Branches: Master, Main, Release, Hot-fix -------
+ 
+
+
+git branch                : to list the branches
+git branch movies        : to create a new branch
+git checkout movies        : to switch from one branch to another.
+git checkout -b recharge: to create and switch from one branch to another.
+git branch -m old new        : to rename a branch
+git branch -D movies        : to delete a branch
+
+
+we cant delete the current branch
+
+
+PROCESS:
+
+
+mkdir Paytm
+cd Paytm
+git init
+touch index.html
+git add index.html
+git commit -m "commit-1" index.html
+
+
+
+
+
+
+
+
+git branch movies        
+git checkout movies
+touch movies{1..5}
+git status
+git add movies*
+git commit -m "dev-1 commits" movies*
+git push origin movies
+
+
+
+
+git branch dth        
+git checkout dth
+touch dth{1..5}
+git status
+git add dth*
+git commit -m "dev-2 commits" dth*
+
+
+git push origin dth
+
+
+
+
+git checkout -b train
+touch train{1..5}
+git add train*
+git commit -m "dev-3 commits" train*
+
+
+git push origin train
+
+
+
+
+git checkout -b recharge
+touch recharge{1..5}
+git add recharge*
+git commit -m "dev-4 commits" recharge*
+
+
+git push origin recharge
+
+
+
+
+In real time we take all the code from one branch to deploy the app
+so we need to add all branches in github
+TO MERGE BRANCHES IN GITHUB WE NEED TO CREATE PULL REQUEST
+
+
+PULL REQUEST -- > CREATE NEW PULL REQUEST -- > SELECT MOVIES -- > CREATE --> MERGE -- > CONFIRM
+NOTE: FOLLOW GREEN BUTTON
+
+
+
+
+GIT MERGE: it will merge files blw two different branches in git
+
+
+git checkout master
+git merge movies
+git merge train
+
+
+
+
+GIT REBASE: used to add files blw two different branches in git
+git checkout master
+git rebase dth
+git rebase recharge
+
+
+
+
+MERGE VS REBASE:
+merge for public repos, rebase for private 
+merge stores history, rebase will not store the entire history
+merge will show files, rebase will not show files
+
+
+
+
+
+
+in GitHub we use Pull Request (PR) to do merging.
+
+
+
+
+GIT REVERT: used to revert(get back) the files we merge.
+to undo merge we can use revert.
+
+
+git revert dth
+git revert recharge
+
+
+GITHUB REVERT:
+SELECT MASTER BRANCH -- > VIEW ALL BRANCHES -- > CLICK ON PR -- > REVERT
+
+
+GIT CLONE: it download code from github(Remote) to git(Local).
+git clone https://github.com/anitalluri00/paytm.git
+NOTE: IT WILL DOWNLOAD CODE FROM ALL BRANCHES
+CHECKOUT TO ALL BRANCHES AND VERIFY
+
+
+
+
+GIT FORK: it download code from github account to another.
+For git clone and git fork repos must be public.
+
+
+
+
+NOTE: IF WE WANT TO CLONE/FORK FOR PUBLIC REPO WE CAN DO IT DIRECTLY.
+FOR PRIVTE REPOSE PREMISSION IS MUST.
+
+
+PUBLIC REPO: source code will be visible from internet.
+PRIVATE REPO: source code will be hidden from internet.
+
+
+
+
+============================================================================
+
+
+BRANCH PROTECTION RULES:TO RESTRICT THE USER TO NOT DELETE THE BRANCH
+SETTINGS -- > BRANCH -- > ADD BRANCH RULE SET -- > Enforcement status: Active 
+Target branches --  add target -- > include all brances --> Create
+
+
+MERGE CONFLICTS:
+it will rise when we merge 2 different branches with same files.
+How to resolve: Manually 
+
+
+
+
+GIT PULL:
+used to download the changed files from github to git.
+git pull origin master
+
+
+GIT FETCH:
+used to show the changed files from github to git.
+git fetch
+
+
+CHERRY-PICK: Merging the specific files based on commits.
+git cherry-pick commit_id
+NOTE: THINK OF APPLE EXAMPLE 
+
+
+Process:
+
+
+mkdir raham
+cd raham/
+
+
+git init
+touch index.htmll
+git add index.htmll
+git commit -m "c-1" index.htmll
+
+
+git branch -m master branch1
+
+
+git checkout -b branch2
+touch java{1..3}
+git init
+git add java*
+git commit -m "java-commits" java*
+
+
+touch python{1..3}
+git add python*
+git commit -m "python commits" python*
+
+
+touch php{1..3}
+git add php*
+git commit -m "php commits" php*
+git log --oneline
+
+
+git checkout branch1
+ll
+git cherry-pick commit_id_of python
+ll
+git cherry-pick commit_id_of php
+
+
+
+
+.gitignore: this file will ignore the files of being tracked.
+if you write any filename on this .gitingore it wont track that file.
+USECASE: cred
+
+
+Note: . should be mandatory
+
+
+GIT STATSH: use to hide the files temporarily.
+Note: files need to tracked but not committed.
+
+
+mkdir abcd
+cd abcd
+git init
+
+
+touch index.html
+git add index.html
+git commit -m "abc" index.html
+
+
+
+
+touch file{1..3}
+git add file*
+git stash       -- > files will be hidden
+git stash apply -- > to bring the files back
+git stash list  -- > to list stashes
+git stash clear -- > to delete all stashes
